@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-
 import type { Page } from '@/payload-types'
 
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
@@ -7,6 +6,16 @@ import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
+import { HeroBlock } from '@/blocks/HeroBlock/Component'
+import { ContentImageBlockComponent } from './ContentImageBlock/Component'
+import { StatsBlock } from './StatsBlock/Component'
+import { HeroBlock2 } from './HeroBlock2/Component'
+import { ContactBlockComponent } from './ContactBlock/Component'
+import { LocationsBlockComponent } from './LocationsBlock/Component'
+import { EcosystemBlockComponent } from './EcosystemBlock/Component'
+import { PartnersBlockComponent } from './PartnersBlock/Component'
+import { TeamBlockComponent } from './TeamBlock/Component'
+import { Hero3Block } from './HeroBlock3/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -14,10 +23,20 @@ const blockComponents = {
   cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
-}
+  hero: HeroBlock,
+  heroBlock2: HeroBlock2,
+  contentImage: ContentImageBlockComponent,
+  stats: StatsBlock,
+  contactBlock: ContactBlockComponent,
+  locationsBlock: LocationsBlockComponent,
+  ecosystemBlock: EcosystemBlockComponent,
+  partnersBlock: PartnersBlockComponent,
+  teamBlock: TeamBlockComponent,
+  heroBlock3: Hero3Block,
+} as const
 
 export const RenderBlocks: React.FC<{
-  blocks: Page['layout'][0][]
+  blocks: Page['layout']
 }> = (props) => {
   const { blocks } = props
 
@@ -30,13 +49,12 @@ export const RenderBlocks: React.FC<{
           const { blockType } = block
 
           if (blockType && blockType in blockComponents) {
-            const Block = blockComponents[blockType]
+            const Block = blockComponents[blockType as keyof typeof blockComponents]
 
             if (Block) {
               return (
-                <div className="my-16" key={index}>
-                  {/* @ts-expect-error there may be some mismatch between the expected types here */}
-                  <Block {...block} disableInnerContainer />
+                <div className="" key={index}>
+                  <Block {...(block as any)} disableInnerContainer />
                 </div>
               )
             }

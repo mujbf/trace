@@ -1,103 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Space+Grotesk:wght@300..700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: unset;
-    font-weight: unset;
-  }
-
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 240 5% 96%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 240 6% 80%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.2rem;
-
-    --success: 196 52% 74%;
-    --warning: 34 89% 85%;
-    --error: 10 100% 86%;
-  }
-
-  [data-theme='dark'] {
-    --background: 0 0% 0%;
-    --foreground: 210 40% 98%;
-
-    --card: 0 0% 4%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 0, 0%, 15%, 0.8;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-
-    --success: 196 100% 14%;
-    --warning: 34 51% 25%;
-    --error: 10 39% 43%;
-  }
+.space-grotesk-light {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
-  }
+.space-grotesk-regular {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
-html {
-  opacity: 0;
+.space-grotesk-medium {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
-html[data-theme='dark'],
-html[data-theme='light'] {
-  opacity: initial;
+.space-grotesk-bold {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.manrope-extralight {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.manrope-light {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.manrope-regular {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.manrope-medium {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.manrope-semibold {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.manrope-bold {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.manrope-extrabold {
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+
+
+/* Gradients */
+
+.secondary-gradient{
+  background: linear-gradient(135deg,rgba(184, 214, 255, 1) 0%, rgba(216, 233, 255, 1) 34%, rgba(251, 251, 253, 1) 56%, rgba(216, 233, 255, 1) 76%, rgba(184, 214, 255, 1) 100%);
+}
+
+.secondary-gradient-2{
+  background: linear-gradient(225deg,rgba(184, 214, 255, 1) 0%, rgba(216, 233, 255, 1) 34%, rgba(251, 251, 253, 1) 56%, rgba(216, 233, 255, 1) 76%, rgba(184, 214, 255, 1) 100%);
+}
+
+.tertiary-gradient{
+  background: #DDF5D2;
+background: linear-gradient(225deg, rgba(221, 245, 210, 1) 0%, rgba(236, 248, 231, 1) 19%, rgba(251, 251, 253, 1) 45%, rgba(221, 245, 210, 1) 91%, rgba(188, 237, 169, 1) 100%);
+}
+
+.yellow-gradient{
+  background: #F0F98F;
+background: linear-gradient(135deg, rgba(240, 249, 143, 1) 0%, rgba(244, 251, 198, 1) 7%, rgba(251, 253, 233, 1) 49%, rgba(244, 251, 198, 1) 88%, rgba(240, 249, 143, 1) 100%);
+}
+
+
+/* Override Payload RichText width constraints */
+.payload-richtext {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.payload-richtext > * {
+  max-width: none !important;
+}
+
+/* If you're using prose classes */
+.prose {
+  max-width: none !important;
 }

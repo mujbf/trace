@@ -56,6 +56,7 @@ const config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
@@ -92,6 +93,62 @@ const config = {
         success: 'hsl(var(--success))',
         error: 'hsl(var(--error))',
         warning: 'hsl(var(--warning))',
+        primary: {
+  50: '#f4f4fe',
+  100: '#edeafd',
+  200: '#dbd8fc',
+  300: '#c1b9f9',
+  400: '#a391f4',
+  500: '#8465ed', 
+  600: '#7344e3',
+  700: '#6433cf',
+  800: '#532aad',
+  900: '#45248e',
+  950: '#291560',
+},
+secondary: {
+  50: '#e9f4ff',
+  100: '#d8e9ff',
+  200: '#b8d6ff',
+  300: '#8eb9ff',
+  400: '#618eff',
+  500: '#3d64ff', 
+  600: '#1c36ff',
+  700: '#1128f1',
+  800: '#1125bc',
+  900: '#182a97',
+  950: '#0e1658',
+},
+tertiary: {
+  50: '#f0fbea',
+  100: '#ddf5d2',
+  200: '#bceda9',
+  300: '#92df77',
+  400: '#6dce4d',
+  500: '#49a92c', 
+  600: '#388f21',
+  700: '#2e6d1e',
+  800: '#28571d',
+  900: '#244a1d',
+  950: '#0f280b',
+},
+dark: {
+  20: '#19191933',
+  40: '#19191966',
+  60: '#19191999',
+  80: '#191919CC',
+  100: '#191919FF',
+},
+light:{
+  100: '#FBFBFD',
+},
+darkBlue:{
+  100: '#182A97',
+},
+lightBlue:{
+  100: '#8EB9FF',
+},
+
       },
       fontFamily: {
         mono: ['var(--font-geist-mono)'],

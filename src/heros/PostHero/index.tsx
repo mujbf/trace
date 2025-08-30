@@ -38,11 +38,14 @@ export const PostHero: React.FC<{
             })}
           </div>
 
-          <div className="">
-            <h1 className="mb-6 text-3xl md:text-5xl lg:text-6xl">{title}</h1>
-          </div>
+          {/* Uncomment these sections if you want to display title and author info */}
+          {/* <div className="">
+            <h1 className="space-grotesk-light text-7xl leading-[120%] tracking-tighter">
+              {title}
+            </h1>
+          </div> */}
 
-          <div className="flex flex-col md:flex-row gap-4 md:gap-16">
+          {/* <div className="flex flex-col md:flex-row gap-4 md:gap-16">
             {hasAuthors && (
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-1">
@@ -59,14 +62,32 @@ export const PostHero: React.FC<{
                 <time dateTime={publishedAt}>{formatDateTime(publishedAt)}</time>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
-      <div className="min-h-[80vh] select-none">
-        {heroImage && typeof heroImage !== 'string' && (
-          <Media fill priority imgClassName="-z-10 object-cover" resource={heroImage} />
+      <div className="min-h-[60vh] select-none">
+        {/* Use the actual hero image from the post */}
+        {heroImage && typeof heroImage !== 'string' ? (
+          <Media
+            fill
+            priority
+            imgClassName="absolute inset-0 h-full w-full object-cover -z-10"
+            resource={heroImage}
+          />
+        ) : (
+          // Fallback image if no hero image is available
+          <img
+            src="/assets/images/sample-4.jpg"
+            alt="Hero background"
+            className="absolute inset-0 h-full w-full object-cover -z-10"
+          />
         )}
-        <div className="absolute pointer-events-none left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent" />
+
+        {/* White gradient overlay from top to bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white to-transparent -z-[5]" />
+
+        {/* Optional: Dark gradient overlay from bottom (uncomment if needed) */}
+        {/* <div className="absolute pointer-events-none left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent" /> */}
       </div>
     </div>
   )

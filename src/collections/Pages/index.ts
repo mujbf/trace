@@ -20,6 +20,16 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { Hero } from '@/blocks/Hero'
+import { HeroBlock2 } from '@/blocks/HeroBlock2'
+import { ContentImage } from '@/blocks/ContentImage'
+import { Stats } from '@/blocks/Stats'
+import { ContactBlock } from '@/blocks/Contact'
+import { LocationsBlock } from '@/blocks/LocationsBlock'
+import { EcosystemBlock } from '@/blocks/EcoSystemBlock'
+import { PartnersBlock } from '@/blocks/PartnersBlock'
+import { TeamBlock } from '@/blocks/TeamBlock'
+import { HeroBlock3 } from '@/blocks/HeroBlock3'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -75,7 +85,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Hero, HeroBlock2, HeroBlock3, ContentImage, Stats, ContactBlock, LocationsBlock, EcosystemBlock, PartnersBlock, TeamBlock],
               required: true,
               admin: {
                 initCollapsed: true,

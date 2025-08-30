@@ -191,7 +191,23 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | HeroBlock
+    | HeroBlock2
+    | HeroBlock3
+    | ContentImageBlock
+    | StatsBlock
+    | ContactBlock
+    | LocationsBlock
+    | EcosystemBlock
+    | PartnersBlock
+    | TeamBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -736,6 +752,590 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBlock".
+ */
+export interface HeroBlock {
+  /**
+   * Part of the title that will appear in primary color (e.g., "Technologically Re-Awakening")
+   */
+  primaryTitle?: string | null;
+  /**
+   * Body text that will appear in the right column with border
+   */
+  bodyText: string;
+  /**
+   * Hero image that will be displayed below the content section
+   */
+  heroImg: string | Media;
+  /**
+   * Text that will scroll horizontally in the marquee section
+   */
+  marqueeText: string;
+  /**
+   * Description text that appears above the cards grid
+   */
+  cardsDescription?: string | null;
+  /**
+   * Cards that will be displayed in the grid below the marquee
+   */
+  cards: {
+    /**
+     * Title for this card
+     */
+    title: string;
+    /**
+     * Image for this card
+     */
+    image: string | Media;
+    /**
+     * URL or path for the "Learn More" link (optional)
+     */
+    link?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBlock2".
+ */
+export interface HeroBlock2 {
+  /**
+   * Main title that will appear in primary color
+   */
+  primaryTitle: string;
+  /**
+   * Body text that will appear below the title
+   */
+  bodyText: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Hero image that will be displayed full width below the content section
+   */
+  heroImg: string | Media;
+  /**
+   * Text that will scroll horizontally in the marquee section
+   */
+  marqueeText: string;
+  /**
+   * Description text that appears above the content cards (always visible)
+   */
+  contentCardsDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Optional content cards with sub headings and body text (up to 2 cards)
+   */
+  contentCards?:
+    | {
+        /**
+         * Sub heading for this content card
+         */
+        subHeading: string;
+        /**
+         * Body text for this content card
+         */
+        bodyText: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroBlock2';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBlock3".
+ */
+export interface HeroBlock3 {
+  /**
+   * Main title that will appear in primary color
+   */
+  primaryTitle: string;
+  /**
+   * Body text that will appear below the title. Use line breaks to create paragraphs.
+   */
+  bodyText: string;
+  /**
+   * Text for the call-to-action button
+   */
+  buttonText?: string | null;
+  /**
+   * URL or path for the button link
+   */
+  buttonLink?: string | null;
+  /**
+   * Pillar categories that will appear as tabs on the left, each containing related cards
+   */
+  pillars?:
+    | {
+        /**
+         * Title for this pillar category (will appear as a tab)
+         */
+        title: string;
+        /**
+         * Cards that will be displayed when this pillar tab is active
+         */
+        cards?:
+          | {
+              /**
+               * Title for this card
+               */
+              title: string;
+              /**
+               * Optional description text for this card. Use line breaks to create paragraphs.
+               */
+              description?: string | null;
+              /**
+               * Image for this card
+               */
+              image: string | Media;
+              /**
+               * Optional link URL for the "Learn More" button
+               */
+              link?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Disable inner container constraints for full-width content
+   */
+  disableInnerContainer?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroBlock3';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentImageBlock".
+ */
+export interface ContentImageBlock {
+  /**
+   * Optional scrolling marquee text that appears above the content section
+   */
+  marqueeText?: string | null;
+  /**
+   * Main title that will appear in the content section
+   */
+  title: string;
+  /**
+   * Rich text content that will appear below the title
+   */
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Text for the call-to-action button
+   */
+  buttonText: string;
+  /**
+   * URL or path for the button link
+   */
+  buttonLink: string;
+  /**
+   * Image that will extend to the screen edge on desktop
+   */
+  image: string | Media;
+  /**
+   * Choose which side the image appears on (desktop only - mobile is always full width)
+   */
+  imagePosition?: ('right' | 'left') | null;
+  /**
+   * When checked, image stays within container with padding. When unchecked, image extends to screen edge (default behavior)
+   */
+  imageContained?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contentImage';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBlock".
+ */
+export interface StatsBlock {
+  /**
+   * Text that will scroll horizontally in the marquee section (optional)
+   */
+  marqueeText?: string | null;
+  /**
+   * Background style for the entire stats section
+   */
+  backgroundColor?: ('light' | 'dark' | 'gradient') | null;
+  /**
+   * Large primary statistics (like revenue figures) - maximum 2 items
+   */
+  primaryStats?:
+    | {
+        /**
+         * The large statistic number (e.g., "LKR 150+ Million", "LKR 3+ Billion")
+         */
+        number: string;
+        /**
+         * Label for this primary statistic (optional, used internally)
+         */
+        label?: string | null;
+        /**
+         * Description text below the number (e.g., "Direct Income to the Government")
+         */
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Smaller secondary statistics with icons - displays in grid format
+   */
+  secondaryStats?:
+    | {
+        /**
+         * The statistic number (e.g., "2500+", "10+", "25+", "1000+")
+         */
+        number: string;
+        /**
+         * Label for this statistic (e.g., "Tech Experts", "Corporates", "Startups")
+         */
+        label: string;
+        /**
+         * Icon image for this statistic (optional)
+         */
+        icon?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Disable the inner container constraints for full-width layout
+   */
+  disableInnerContainer?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'stats';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactBlock".
+ */
+export interface ContactBlock {
+  /**
+   * Background image for the contact section
+   */
+  backgroundImage: string | Media;
+  /**
+   * Main scrolling title text
+   */
+  mainTitle: string;
+  /**
+   * Contact form tabs and their associated forms
+   */
+  tabs: {
+    /**
+     * Title for the tab (e.g., "Book an appointment")
+     */
+    tabTitle: string;
+    /**
+     * Optional subtitle for the tab
+     */
+    tabSubtitle?: string | null;
+    /**
+     * Form fields for this tab
+     */
+    formFields: {
+      /**
+       * Label for the form field
+       */
+      fieldLabel: string;
+      /**
+       * Type of form field
+       */
+      fieldType: 'text' | 'email' | 'tel' | 'textarea' | 'select';
+      /**
+       * Placeholder text for the field
+       */
+      placeholder?: string | null;
+      /**
+       * Whether this field is required
+       */
+      required?: boolean | null;
+      /**
+       * Options for select dropdown (only shown when field type is select)
+       */
+      options?:
+        | {
+            option: string;
+            id?: string | null;
+          }[]
+        | null;
+      id?: string | null;
+    }[];
+    /**
+     * Text for the submit button
+     */
+    submitButtonText?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LocationsBlock".
+ */
+export interface LocationsBlock {
+  /**
+   * Main marquee title text
+   */
+  mainTitle: string;
+  /**
+   * Custom map image (e.g., Sri Lanka map) - locations will be positioned on this image
+   */
+  mapImage: string | Media;
+  /**
+   * List of locations to display
+   */
+  locations: {
+    /**
+     * Name of the location (e.g., "TRACE Expert City Colombo 10")
+     */
+    locationName: string;
+    /**
+     * Detailed description of the location (shown when expanded)
+     */
+    locationDescription?: string | null;
+    /**
+     * Image of the location (shown when expanded)
+     */
+    locationImage?: (string | null) | Media;
+    /**
+     * Text for the action button (e.g., "Learn More")
+     */
+    buttonText?: string | null;
+    /**
+     * URL or path for the action button
+     */
+    buttonLink?: string | null;
+    /**
+     * Map positioning - Use grid system (1-15 for both row and column). Leave empty to use default positions.
+     */
+    coordinates?: {
+      /**
+       * Grid row position (1-15, top to bottom). 1=North, 15=South
+       */
+      gridRow?: number | null;
+      /**
+       * Grid column position (1-15, left to right). 1=West, 15=East
+       */
+      gridCol?: number | null;
+      /**
+       * Actual latitude coordinate (for reference only - not used for positioning)
+       */
+      latitude?: number | null;
+      /**
+       * Actual longitude coordinate (for reference only - not used for positioning)
+       */
+      longitude?: number | null;
+    };
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'locationsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EcosystemBlock".
+ */
+export interface EcosystemBlock {
+  /**
+   * First part of the title (before the highlighted text)
+   */
+  titlePrefix: string;
+  /**
+   * Highlighted part of the title (will be styled in primary color)
+   */
+  titleHighlight: string;
+  /**
+   * Items in the ecosystem grid
+   */
+  ecosystemItems: {
+    /**
+     * Title of the ecosystem item (e.g., "Policymaking", "Private Sector Businesses")
+     */
+    title: string;
+    /**
+     * Description of the ecosystem item
+     */
+    description: string;
+    /**
+     * Image representing this ecosystem item
+     */
+    image: string | Media;
+    /**
+     * Text for the action button (e.g., "Learn More")
+     */
+    buttonText?: string | null;
+    /**
+     * URL or path for the action button
+     */
+    buttonLink?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ecosystemBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnersBlock".
+ */
+export interface PartnersBlock {
+  /**
+   * Main title for the partners section
+   */
+  title: string;
+  /**
+   * Number of rows to display (6 logos per row on desktop, 3 on mobile)
+   */
+  rowsToShow?: number | null;
+  /**
+   * List of partner organizations
+   */
+  partners: {
+    /**
+     * Name of the partner organization
+     */
+    name: string;
+    /**
+     * Partner logo image (preferably square format)
+     */
+    logo: string | Media;
+    /**
+     * Partner website URL (optional, for future use)
+     */
+    website?: string | null;
+    /**
+     * Brief description of the partnership (optional, for future use)
+     */
+    description?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'partnersBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamBlock".
+ */
+export interface TeamBlock {
+  /**
+   * Main title for the team section
+   */
+  title: string;
+  /**
+   * Different sections of the team (e.g., Board of Advisors, Directors, Operations)
+   */
+  teamSections: {
+    /**
+     * Title for this team section (e.g., "Board of Advisors", "Board of Directors")
+     */
+    sectionTitle: string;
+    /**
+     * Team members in this section
+     */
+    members: {
+      /**
+       * Full name of the team member
+       */
+      name: string;
+      /**
+       * Job title or position (e.g., "Chief Executive Officer", "Senior Advisor")
+       */
+      position?: string | null;
+      /**
+       * Professional headshot photo (preferably square format)
+       */
+      photo: string | Media;
+      /**
+       * Brief biography or description (shown on hover)
+       */
+      bio?: string | null;
+      /**
+       * Contact email address (optional)
+       */
+      email?: string | null;
+      /**
+       * LinkedIn profile URL (optional)
+       */
+      linkedin?: string | null;
+      /**
+       * Twitter profile URL (optional)
+       */
+      twitter?: string | null;
+      id?: string | null;
+    }[];
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'teamBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1025,6 +1625,16 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        hero?: T | HeroBlockSelect<T>;
+        heroBlock2?: T | HeroBlock2Select<T>;
+        heroBlock3?: T | HeroBlock3Select<T>;
+        contentImage?: T | ContentImageBlockSelect<T>;
+        stats?: T | StatsBlockSelect<T>;
+        contactBlock?: T | ContactBlockSelect<T>;
+        locationsBlock?: T | LocationsBlockSelect<T>;
+        ecosystemBlock?: T | EcosystemBlockSelect<T>;
+        partnersBlock?: T | PartnersBlockSelect<T>;
+        teamBlock?: T | TeamBlockSelect<T>;
       };
   meta?:
     | T
@@ -1121,6 +1731,245 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBlock_select".
+ */
+export interface HeroBlockSelect<T extends boolean = true> {
+  primaryTitle?: T;
+  bodyText?: T;
+  heroImg?: T;
+  marqueeText?: T;
+  cardsDescription?: T;
+  cards?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        link?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBlock2_select".
+ */
+export interface HeroBlock2Select<T extends boolean = true> {
+  primaryTitle?: T;
+  bodyText?: T;
+  heroImg?: T;
+  marqueeText?: T;
+  contentCardsDescription?: T;
+  contentCards?:
+    | T
+    | {
+        subHeading?: T;
+        bodyText?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBlock3_select".
+ */
+export interface HeroBlock3Select<T extends boolean = true> {
+  primaryTitle?: T;
+  bodyText?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  pillars?:
+    | T
+    | {
+        title?: T;
+        cards?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+              link?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  disableInnerContainer?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentImageBlock_select".
+ */
+export interface ContentImageBlockSelect<T extends boolean = true> {
+  marqueeText?: T;
+  title?: T;
+  description?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  image?: T;
+  imagePosition?: T;
+  imageContained?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBlock_select".
+ */
+export interface StatsBlockSelect<T extends boolean = true> {
+  marqueeText?: T;
+  backgroundColor?: T;
+  primaryStats?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+        description?: T;
+        id?: T;
+      };
+  secondaryStats?:
+    | T
+    | {
+        number?: T;
+        label?: T;
+        icon?: T;
+        id?: T;
+      };
+  disableInnerContainer?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactBlock_select".
+ */
+export interface ContactBlockSelect<T extends boolean = true> {
+  backgroundImage?: T;
+  mainTitle?: T;
+  tabs?:
+    | T
+    | {
+        tabTitle?: T;
+        tabSubtitle?: T;
+        formFields?:
+          | T
+          | {
+              fieldLabel?: T;
+              fieldType?: T;
+              placeholder?: T;
+              required?: T;
+              options?:
+                | T
+                | {
+                    option?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+        submitButtonText?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LocationsBlock_select".
+ */
+export interface LocationsBlockSelect<T extends boolean = true> {
+  mainTitle?: T;
+  mapImage?: T;
+  locations?:
+    | T
+    | {
+        locationName?: T;
+        locationDescription?: T;
+        locationImage?: T;
+        buttonText?: T;
+        buttonLink?: T;
+        coordinates?:
+          | T
+          | {
+              gridRow?: T;
+              gridCol?: T;
+              latitude?: T;
+              longitude?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EcosystemBlock_select".
+ */
+export interface EcosystemBlockSelect<T extends boolean = true> {
+  titlePrefix?: T;
+  titleHighlight?: T;
+  ecosystemItems?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        buttonText?: T;
+        buttonLink?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnersBlock_select".
+ */
+export interface PartnersBlockSelect<T extends boolean = true> {
+  title?: T;
+  rowsToShow?: T;
+  partners?:
+    | T
+    | {
+        name?: T;
+        logo?: T;
+        website?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamBlock_select".
+ */
+export interface TeamBlockSelect<T extends boolean = true> {
+  title?: T;
+  teamSections?:
+    | T
+    | {
+        sectionTitle?: T;
+        members?:
+          | T
+          | {
+              name?: T;
+              position?: T;
+              photo?: T;
+              bio?: T;
+              email?: T;
+              linkedin?: T;
+              twitter?: T;
+              id?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
