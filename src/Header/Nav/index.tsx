@@ -58,7 +58,7 @@ export const HeaderNav: React.FC<{ data?: HeaderType }> = ({ data }) => {
                 src="assets/logo.png"
                 alt="TRACE"
                 className={`w-auto transition-all duration-300 ease-out ${
-                  isScrolled ? 'h-6' : 'h-8'
+                  isScrolled ? 'h-8' : 'h-12'
                 }`}
               />
             </Link>

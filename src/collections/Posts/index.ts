@@ -85,6 +85,14 @@ export const Posts: CollectionConfig<'posts'> = {
               relationTo: 'media',
             },
             {
+              name: 'excerpt',
+              label: 'Excerpt',
+              type: 'textarea', // good for short summaries
+              admin: {
+                description: 'A short summary of the post (used in previews, cards, etc.)',
+              },
+            },
+            {
               name: 'content',
               type: 'richText',
               editor: lexicalEditor({

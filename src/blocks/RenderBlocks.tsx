@@ -16,6 +16,8 @@ import { EcosystemBlockComponent } from './EcosystemBlock/Component'
 import { PartnersBlockComponent } from './PartnersBlock/Component'
 import { TeamBlockComponent } from './TeamBlock/Component'
 import { Hero3Block } from './HeroBlock3/Component'
+import { PillarsBlock } from './PillarsBlock/Component'
+import { PostsBlock } from './PostsBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -33,6 +35,8 @@ const blockComponents = {
   partnersBlock: PartnersBlockComponent,
   teamBlock: TeamBlockComponent,
   heroBlock3: Hero3Block,
+  pillarsBlock: PillarsBlock,
+  postsBlock: PostsBlock,
 } as const
 
 export const RenderBlocks: React.FC<{

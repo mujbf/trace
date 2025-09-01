@@ -207,6 +207,8 @@ export interface Page {
     | EcosystemBlock
     | PartnersBlock
     | TeamBlock
+    | PillarsBlock
+    | PostsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -231,6 +233,10 @@ export interface Post {
   id: string;
   title: string;
   heroImage?: (string | null) | Media;
+  /**
+   * A short summary of the post (used in previews, cards, etc.)
+   */
+  excerpt?: string | null;
   content: {
     root: {
       type: string;
@@ -825,9 +831,34 @@ export interface HeroBlock2 {
     [k: string]: unknown;
   };
   /**
-   * Hero image that will be displayed full width below the content section
+   * Optional button that appears below the body text
+   */
+  button?: {
+    /**
+     * Button text
+     */
+    text?: string | null;
+    /**
+     * Button URL or path
+     */
+    link?: string | null;
+    /**
+     * Button style type
+     */
+    type?: ('primary' | 'secondary') | null;
+  };
+  /**
+   * Hero image that will be displayed below the content section
    */
   heroImg: string | Media;
+  /**
+   * Check to make hero image full viewport width, uncheck to keep it within container width
+   */
+  heroImageFullWidth?: boolean | null;
+  /**
+   * Background color/gradient for the hero section
+   */
+  backgroundColor?: ('primary-gradient' | 'secondary-gradient' | 'yellow-gradient') | null;
   /**
    * Text that will scroll horizontally in the marquee section
    */
@@ -880,6 +911,24 @@ export interface HeroBlock2 {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Cards that will be displayed in the grid
+   */
+  cards: {
+    /**
+     * Title for this card
+     */
+    title: string;
+    /**
+     * Image for this card
+     */
+    image: string | Media;
+    /**
+     * URL or path for the "Learn More" link (optional)
+     */
+    link?: string | null;
+    id?: string | null;
+  }[];
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroBlock2';
@@ -1336,6 +1385,102 @@ export interface TeamBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PillarsBlock".
+ */
+export interface PillarsBlock {
+  /**
+   * Description text that appears above the cards grid
+   */
+  cardsDescription?: string | null;
+  /**
+   * Cards that will be displayed in the grid
+   */
+  cards: {
+    /**
+     * Title for this card
+     */
+    title: string;
+    /**
+     * Image for this card
+     */
+    image: string | Media;
+    /**
+     * URL or path for the "Learn More" link (optional)
+     */
+    link?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pillarsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PostsBlock".
+ */
+export interface PostsBlock {
+  /**
+   * Optional main title for the posts section
+   */
+  title?: string | null;
+  /**
+   * Optional subtitle that appears below the main title
+   */
+  subtitle?: string | null;
+  /**
+   * Choose which posts to display
+   */
+  postsToShow?: ('all' | 'latest' | 'specific' | 'category') | null;
+  /**
+   * Number of latest posts to display
+   */
+  numberOfPosts?: number | null;
+  /**
+   * Select specific posts to display
+   */
+  specificPosts?: (string | Post)[] | null;
+  /**
+   * Select categories to filter posts by
+   */
+  selectedCategories?: (string | Category)[] | null;
+  /**
+   * Maximum number of posts to show from selected categories
+   */
+  limitByCategory?: number | null;
+  /**
+   * Show the hero image section above the posts
+   */
+  showHeroImage?: boolean | null;
+  /**
+   * Background image for the hero section
+   */
+  heroImage?: (string | null) | Media;
+  /**
+   * Background color/gradient for the section
+   */
+  backgroundColor?: ('primary-gradient' | 'secondary-gradient' | 'yellow-gradient' | 'white') | null;
+  /**
+   * Enable pagination for posts (Note: This is a visual indicator only - actual pagination requires custom implementation)
+   */
+  showPagination?: boolean | null;
+  /**
+   * Number of posts per page when pagination is enabled
+   */
+  postsPerPage?: number | null;
+  /**
+   * Show post excerpt/description
+   */
+  showExcerpt?: boolean | null;
+  /**
+   * Grid layout for the posts. Zigzag layout creates a staggered effect on desktop with 80px vertical offset between posts.
+   */
+  gridLayout?: ('single-column' | 'two-column' | 'three-column' | 'zigzag') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'postsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1635,6 +1780,8 @@ export interface PagesSelect<T extends boolean = true> {
         ecosystemBlock?: T | EcosystemBlockSelect<T>;
         partnersBlock?: T | PartnersBlockSelect<T>;
         teamBlock?: T | TeamBlockSelect<T>;
+        pillarsBlock?: T | PillarsBlockSelect<T>;
+        postsBlock?: T | PostsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1762,7 +1909,16 @@ export interface HeroBlockSelect<T extends boolean = true> {
 export interface HeroBlock2Select<T extends boolean = true> {
   primaryTitle?: T;
   bodyText?: T;
+  button?:
+    | T
+    | {
+        text?: T;
+        link?: T;
+        type?: T;
+      };
   heroImg?: T;
+  heroImageFullWidth?: T;
+  backgroundColor?: T;
   marqueeText?: T;
   contentCardsDescription?: T;
   contentCards?:
@@ -1770,6 +1926,14 @@ export interface HeroBlock2Select<T extends boolean = true> {
     | {
         subHeading?: T;
         bodyText?: T;
+        id?: T;
+      };
+  cards?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        link?: T;
         id?: T;
       };
   id?: T;
@@ -1975,11 +2139,51 @@ export interface TeamBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PillarsBlock_select".
+ */
+export interface PillarsBlockSelect<T extends boolean = true> {
+  cardsDescription?: T;
+  cards?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        link?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PostsBlock_select".
+ */
+export interface PostsBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  postsToShow?: T;
+  numberOfPosts?: T;
+  specificPosts?: T;
+  selectedCategories?: T;
+  limitByCategory?: T;
+  showHeroImage?: T;
+  heroImage?: T;
+  backgroundColor?: T;
+  showPagination?: T;
+  postsPerPage?: T;
+  showExcerpt?: T;
+  gridLayout?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
   heroImage?: T;
+  excerpt?: T;
   content?: T;
   relatedPosts?: T;
   categories?: T;

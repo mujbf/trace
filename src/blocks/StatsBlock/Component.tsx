@@ -301,7 +301,7 @@ export const StatsBlock: React.FC<StatsBlockType> = ({
                   <PrimaryStatCard stat={stat} />
                   {/* Vertical divider line between primary stats on desktop */}
                   {index === 0 && primaryStats.length > 1 && (
-                    <div className="hidden lg:block absolute right-0 top-1/2 transform -translate-y-1/2 w-1 h-32 bg-[#D6D0FC]"></div>
+                    <div className="hidden lg:block absolute right-0 top-1/2 transform -translate-y-1/2 w-1 h-32 bg-[#ECECEC]"></div>
                   )}
                 </div>
               ))}

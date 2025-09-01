@@ -9,17 +9,34 @@ import { PrimaryButton, SecondaryButton } from '@/components/Button/button'
 interface UpdatedHeroBlock2Type {
   primaryTitle?: string
   bodyText?: any // Rich text content
+  button?: {
+    text?: string
+    link?: string
+    type?: 'primary' | 'secondary'
+  }
   heroImg?:
     | {
         url?: string
         alt?: string
       }
     | string
+  heroImageFullWidth?: boolean
+  backgroundColor?: 'primary-gradient' | 'secondary-gradient' | 'yellow-gradient'
   marqueeText?: string
   contentCardsDescription?: any // Rich text content
   contentCards?: Array<{
     subHeading: string
     bodyText: any // Rich text content
+  }>
+  cards?: Array<{
+    title: string
+    image:
+      | {
+          url?: string
+          alt?: string
+        }
+      | string
+    link?: string
   }>
   disableInnerContainer?: boolean
 }
@@ -155,17 +172,62 @@ const ContentCard: React.FC<{ card: ContentCardData }> = ({ card }) => {
   )
 }
 
+// Card Component
+interface CardData {
+  title: string
+  image:
+    | {
+        url?: string
+        alt?: string
+      }
+    | string
+  link?: string
+}
+
+const Card: React.FC<{ card: CardData }> = ({ card }) => {
+  const imageUrl = typeof card.image === 'object' && card.image.url ? card.image.url : ''
+  const imageAlt = typeof card.image === 'object' && card.image.alt ? card.image.alt : card.title
+
+  return (
+    <div className="hover:bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 group border-l-2 border-primary-600">
+      <div className="aspect-[4/3] overflow-hidden">
+        {imageUrl && (
+          <img
+            src={imageUrl}
+            alt={imageAlt}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 rounded-r-[16px]"
+          />
+        )}
+      </div>
+      <div className="p-6 flex flex-col gap-10 justify-between">
+        <SubHeading2>{card.title}</SubHeading2>
+        {card.link && (
+          <a href={card.link} className="">
+            <SecondaryButton>Learn More</SecondaryButton>
+          </a>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export const HeroBlock2: React.FC<UpdatedHeroBlock2Type> = ({
   primaryTitle,
   bodyText,
+  button,
   heroImg,
+  heroImageFullWidth = true,
+  backgroundColor = 'primary-gradient',
   marqueeText,
   contentCardsDescription,
   contentCards,
   disableInnerContainer,
+  cards,
 }) => {
   return (
-    <section className="w-screen min-h-screen secondary-gradient mt-[-152px] flex flex-col gap-6 md:gap-16 pt-[152px] md:pt-[152px] pb-[72px]">
+    <section
+      className={`w-screen min-h-screen ${backgroundColor} mt-[-152px] flex flex-col gap-6 md:gap-16 pt-[152px] md:pt-[152px] pb-[72px]`}
+    >
       {/* Content Section - Title and Body Text stacked vertically, centered */}
       <div className="max-w-8xl mx-auto px-4 md:px-20 mt-[88px] md:mt-[152px]">
         <div className="flex flex-col items-center">
@@ -188,13 +250,34 @@ export const HeroBlock2: React.FC<UpdatedHeroBlock2Type> = ({
                 {/* Single continuous border with fade */}
                 {heroImg && (
                   <div
-                    className="absolute left-0 top-0 w-1 hidden md:block"
+                    className="absolute left-0 top-0 w-[2px] hidden md:block"
                     style={{
-                      height: 'calc(100% + 6rem + 4rem)', // Body height + gap to image
+                      height: button
+                        ? 'calc(100% + 6rem + 4rem + 3rem)'
+                        : 'calc(100% + 6rem + 4rem)', // Body height + gap to image + button height if present
                       background:
-                        'linear-gradient(to bottom, transparent 0%, #A391F4 60%, #6433CF 100%)',
+                        'linear-gradient(to bottom, transparent 0%, #b1b1b1ff 60%, #696969ff 100%)',
                     }}
                   />
+                )}
+              </div>
+            )}
+
+            {/* Optional Button */}
+            {button && button.text && (
+              <div className="flex justify-start pl-0 md:pl-8">
+                {button.link ? (
+                  <a href={button.link}>
+                    {button.type === 'secondary' ? (
+                      <SecondaryButton>{button.text}</SecondaryButton>
+                    ) : (
+                      <PrimaryButton>{button.text}</PrimaryButton>
+                    )}
+                  </a>
+                ) : button.type === 'secondary' ? (
+                  <SecondaryButton>{button.text}</SecondaryButton>
+                ) : (
+                  <PrimaryButton>{button.text}</PrimaryButton>
                 )}
               </div>
             )}
@@ -202,10 +285,12 @@ export const HeroBlock2: React.FC<UpdatedHeroBlock2Type> = ({
         </div>
       </div>
 
-      {/* Image Section - Full viewport width */}
+      {/* Image Section - Conditional full width or container width */}
       {heroImg && typeof heroImg === 'object' && 'url' in heroImg && heroImg.url && (
-        <div className="w-screen">
-          <div className="relative w-full aspect-[1296/604] overflow-hidden">
+        <div className={heroImageFullWidth ? 'w-screen' : 'max-w-8xl px-4 md:px-20'}>
+          <div
+            className={`relative w-full aspect-[1296/604] ${!heroImageFullWidth ? 'rounded-lg overflow-hidden' : 'overflow-hidden'}`}
+          >
             <img
               src={heroImg.url}
               alt={
@@ -252,6 +337,20 @@ export const HeroBlock2: React.FC<UpdatedHeroBlock2Type> = ({
                 ))}
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Cards Section */}
+      {cards && cards.length > 0 && (
+        <div className="">
+          <div className="max-w-8xl mx-auto px-4 md:px-20">
+            {/* Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+              {cards.map((card, index) => (
+                <Card key={index} card={card} />
+              ))}
+            </div>
           </div>
         </div>
       )}
