@@ -54,6 +54,8 @@ export const EcosystemBlockComponent: React.FC<EcosystemBlockType> = ({
                             src={imageUrl}
                             alt={imageAlt}
                             className="w-full h-full object-cover"
+                            width={160}
+                            height={260}
                           />
                         </div>
                       )}
@@ -178,7 +180,7 @@ export const EcosystemBlockComponent: React.FC<EcosystemBlockType> = ({
                                   <img
                                     src={imageUrl}
                                     alt={imageAlt}
-                                    className="w-full h-full object-cover aspect-[2/3]"
+                                    className="max-w-40 h-full object-cover aspect-[160/260]"
                                   />
                                 </div>
                               </div>
