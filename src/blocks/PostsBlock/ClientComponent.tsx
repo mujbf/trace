@@ -233,7 +233,7 @@ export const PostsBlockClient: React.FC<PostsBlockType & { posts: any[] }> = ({
       {/* Posts Section */}
       <div className="container mx-auto px-4 py-16">
         {posts.length > 0 ? (
-          <div className={`grid ${getGridClass(gridLayout)} gap-8 mb-16`}>
+          <div className={`grid ${getGridClass(gridLayout)} gap-8 md:gap-20 mb-16`}>
             {posts.map((post, index) => (
               <div
                 key={post.id || index}

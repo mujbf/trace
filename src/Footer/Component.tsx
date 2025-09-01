@@ -5,7 +5,8 @@ import type { Footer } from '@/payload-types'
 import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
 import { CMSLink } from '@/components/Link'
 import { Logo } from '@/components/Logo/Logo'
-import { Twitter, Linkedin, Instagram } from 'lucide-react'
+import { Facebook, Linkedin, Instagram } from 'lucide-react'
+import { XLogo } from './XLogo'
 
 // Centralized style definitions
 const footerStyles = {
@@ -49,9 +50,10 @@ export async function Footer() {
 
   // Define social media links
   const socialLinks = [
-    { href: '#', icon: Twitter, label: 'Twitter' },
-    { href: '#', icon: Linkedin, label: 'LinkedIn' },
-    { href: '#', icon: Instagram, label: 'Instagram' },
+    { href: 'https://www.facebook.com/TRACE.SL.info/', icon: Facebook, label: 'Facebook' },
+    { href: 'https://x.com/trace_lk', icon: XLogo, label: 'X' },
+    { href: 'https://www.instagram.com/trace_srilanka/', icon: Instagram, label: 'Instagram' },
+    { href: 'https://www.linkedin.com/company/trace-srilanka/', icon: Linkedin, label: 'LinkedIn' },
   ]
 
   // Define legal links
@@ -158,7 +160,12 @@ export async function Footer() {
 
           {/* Copyright */}
           <div className={footerStyles.copyrightContainer}>
-            <p className={footerStyles.copyrightText}>© TRACE 2025 | Site by Magic Unbound</p>
+            <p className={footerStyles.copyrightText}>
+              © TRACE 2025 | Site by{' '}
+              <a href="https://magicunbound.co/" className={footerStyles.legalLink}>
+                Magic Unbound
+              </a>
+            </p>
           </div>
         </div>
       </div>
