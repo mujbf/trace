@@ -28,7 +28,7 @@ export const HeaderNav: React.FC<{ data?: HeaderType }> = ({ data }) => {
     { href: '/about', label: 'About' },
     { href: '/pillars', label: 'Pillars' },
     { href: '/partner-with-us', label: 'Partner with Us' },
-    { href: '/posts', label: 'Blog' },
+    { href: '/blog', label: 'Blog' },
   ]
 
   const contactItem = { href: '/contact', label: 'Contact' }

@@ -146,11 +146,11 @@ export const HeroBlock2: Block = {
     {
       name: 'cards',
       type: 'array',
-      required: true,
-      minRows: 1,
+      required: false, // Changed from true to false
+      minRows: 0, // Changed from 1 to 0
       maxRows: 10,
       admin: {
-        description: 'Cards that will be displayed in the grid'
+        description: 'Optional cards that will be displayed in the grid' // Updated description
       },
       fields: [
         {

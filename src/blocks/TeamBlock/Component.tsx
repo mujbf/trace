@@ -84,9 +84,7 @@ export const TeamBlockComponent: React.FC<TeamBlockType> = ({ title, teamSection
                           {/* Hover Overlay */}
                           <div className="absolute inset-0 bg-white/95 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
                             <div className="text-center text-dark-80 w-full">
-                              <h4 className="space-grotesk-medium text-base sm:text-lg lg:text-xl xl:text-2xl text-dark-100 mb-2">
-                                {member.name}
-                              </h4>
+                              <SubHeading2 className="mb-2">{member.name}</SubHeading2>
                               {member.position && (
                                 <p className="manrope-regular text-sm sm:text-base mb-3">
                                   {member.position}

@@ -912,23 +912,25 @@ export interface HeroBlock2 {
       }[]
     | null;
   /**
-   * Cards that will be displayed in the grid
+   * Optional cards that will be displayed in the grid
    */
-  cards: {
-    /**
-     * Title for this card
-     */
-    title: string;
-    /**
-     * Image for this card
-     */
-    image: string | Media;
-    /**
-     * URL or path for the "Learn More" link (optional)
-     */
-    link?: string | null;
-    id?: string | null;
-  }[];
+  cards?:
+    | {
+        /**
+         * Title for this card
+         */
+        title: string;
+        /**
+         * Image for this card
+         */
+        image: string | Media;
+        /**
+         * URL or path for the "Learn More" link (optional)
+         */
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroBlock2';
