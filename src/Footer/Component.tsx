@@ -58,7 +58,7 @@ export async function Footer() {
 
   // Define legal links
   const legalLinks = [
-    { href: '/sitemap', label: 'Sitemap' },
+    // { href: '/sitemap', label: 'Sitemap' },
     { href: '/terms-and-conditions', label: 'Terms and Conditions' },
     { href: '/privacy-policy', label: 'Privacy Policy' },
   ]

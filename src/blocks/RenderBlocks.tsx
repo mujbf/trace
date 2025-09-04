@@ -18,6 +18,7 @@ import { TeamBlockComponent } from './TeamBlock/Component'
 import { Hero3Block } from './HeroBlock3/Component'
 import { PillarsBlock } from './PillarsBlock/Component'
 import { PostsBlock } from './PostsBlock/Component'
+import { TextBlock } from './TextBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -37,6 +38,7 @@ const blockComponents = {
   heroBlock3: Hero3Block,
   pillarsBlock: PillarsBlock,
   postsBlock: PostsBlock,
+  textBlock: TextBlock,
 } as const
 
 export const RenderBlocks: React.FC<{

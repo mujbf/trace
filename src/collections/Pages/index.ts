@@ -32,6 +32,7 @@ import { TeamBlock } from '@/blocks/TeamBlock'
 import { HeroBlock3 } from '@/blocks/HeroBlock3'
 import { PillarsBlock } from '@/blocks/Pillars'
 import { PostsBlock } from '@/blocks/PostsBlock/config'
+import { TextBlock } from '@/blocks/TextBlock'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -87,7 +88,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Hero, HeroBlock2, HeroBlock3, ContentImage, Stats, ContactBlock, LocationsBlock, EcosystemBlock, PartnersBlock, TeamBlock, PillarsBlock, PostsBlock],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, Hero, HeroBlock2, HeroBlock3, ContentImage, Stats, ContactBlock, LocationsBlock, EcosystemBlock, PartnersBlock, TeamBlock, PillarsBlock, PostsBlock, TextBlock],
               required: true,
               admin: {
                 initCollapsed: true,

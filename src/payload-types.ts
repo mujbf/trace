@@ -209,6 +209,7 @@ export interface Page {
     | TeamBlock
     | PillarsBlock
     | PostsBlock
+    | TextBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1483,6 +1484,37 @@ export interface PostsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextBlock".
+ */
+export interface TextBlock {
+  /**
+   * Main title text
+   */
+  title: string;
+  /**
+   * Body text content
+   */
+  bodyText: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'textBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1784,6 +1816,7 @@ export interface PagesSelect<T extends boolean = true> {
         teamBlock?: T | TeamBlockSelect<T>;
         pillarsBlock?: T | PillarsBlockSelect<T>;
         postsBlock?: T | PostsBlockSelect<T>;
+        textBlock?: T | TextBlockSelect<T>;
       };
   meta?:
     | T
@@ -2175,6 +2208,16 @@ export interface PostsBlockSelect<T extends boolean = true> {
   postsPerPage?: T;
   showExcerpt?: T;
   gridLayout?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextBlock_select".
+ */
+export interface TextBlockSelect<T extends boolean = true> {
+  title?: T;
+  bodyText?: T;
   id?: T;
   blockName?: T;
 }
