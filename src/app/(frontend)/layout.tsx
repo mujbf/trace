@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-
 import { cn } from '@/utilities/ui'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
@@ -12,6 +11,7 @@ import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
+import { CookieConsent } from '@/components/CookieConsent/CookieConsent'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -33,10 +33,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               preview: isEnabled,
             }}
           />
-
           <Header />
           {children}
           <Footer />
+          <CookieConsent /> {/* ADD THIS LINE */}
         </Providers>
       </body>
     </html>
