@@ -11,10 +11,29 @@ export function CookieConsent() {
       link.href = 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css'
       document.head.appendChild(link)
 
-      // Import library
-      const CookieConsent = await import('vanilla-cookieconsent')
+      // Import library - use the correct import pattern
+      const CookieConsentModule = await import('vanilla-cookieconsent')
+
+      // The library exports everything under default in some environments
+      const CookieConsent = CookieConsentModule.default || CookieConsentModule
 
       CookieConsent.run({
+        // Add required guiOptions - Changed to bottom right position
+        guiOptions: {
+          consentModal: {
+            layout: 'box', // Changed from 'cloud inline' to 'box'
+            position: 'bottom right', // Changed from 'bottom center' to 'bottom right'
+            equalWeightButtons: true,
+            flipButtons: false,
+          },
+          preferencesModal: {
+            layout: 'box',
+            equalWeightButtons: true,
+            flipButtons: false,
+          },
+        },
+
+        // Categories configuration
         categories: {
           necessary: {
             enabled: true,
@@ -24,6 +43,7 @@ export function CookieConsent() {
           marketing: {},
         },
 
+        // Language configuration
         language: {
           default: 'en',
           translations: {
@@ -43,6 +63,10 @@ export function CookieConsent() {
                 savePreferencesBtn: 'Save preferences',
                 closeIconLabel: 'Close modal',
                 sections: [
+                  {
+                    title: 'Cookie Usage',
+                    description: 'We use cookies to improve your experience on our website.',
+                  },
                   {
                     title: 'Strictly necessary cookies',
                     description:
@@ -65,6 +89,17 @@ export function CookieConsent() {
               },
             },
           },
+        },
+
+        // Optional callback functions
+        onFirstConsent: ({ cookie }) => {
+          console.log('First consent given:', cookie)
+        },
+        onConsent: ({ cookie }) => {
+          console.log('Consent updated:', cookie)
+        },
+        onChange: ({ changedCategories, changedServices }) => {
+          console.log('Preferences changed:', { changedCategories, changedServices })
         },
       })
     }
