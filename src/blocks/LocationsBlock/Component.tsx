@@ -207,7 +207,7 @@ export const LocationsBlockComponent: React.FC<LocationsBlockType> = ({
         duration={40}
       />
 
-      <div className="relative z-20 pb-16 px-4 md:px-8 lg:px-20">
+      <div className="relative z-10 pb-16 px-4 md:px-8 lg:px-20">
         <div className="max-w-8xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start lg:items-center">
             {/* Left Side - Custom Map Image */}
@@ -242,7 +242,7 @@ export const LocationsBlockComponent: React.FC<LocationsBlockType> = ({
                         return (
                           <button
                             key={index}
-                            className={`absolute transform -translate-x-1/2 -translate-y-1/2 z-10 transition-all duration-300 ${
+                            className={`absolute transform -translate-x-1/2 -translate-y-1/2 z-5 transition-all duration-300 ${
                               activeLocation === index
                                 ? 'w-4 h-4 md:w-6 md:h-6'
                                 : 'w-3 h-3 md:w-4 md:h-4'

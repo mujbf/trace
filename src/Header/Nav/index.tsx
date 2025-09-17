@@ -39,7 +39,7 @@ export const HeaderNav: React.FC<{ data?: HeaderType }> = ({ data }) => {
 
   return (
     <header
-      className={`w-full fixed top-0 z-50 transition-all duration-500 ease-out ${
+      className={`w-full fixed top-0 z-100 transition-all duration-500 ease-out ${
         isScrolled
           ? 'bg-white/80 backdrop-blur-md border-b border-white/20 shadow-sm'
           : 'bg-white/0 backdrop-blur-sm'
