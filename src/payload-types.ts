@@ -1131,52 +1131,17 @@ export interface ContactBlock {
    */
   mainTitle: string;
   /**
-   * Contact form tabs and their associated forms
+   * Contact section tabs (all will use the same contact form)
    */
   tabs: {
     /**
-     * Title for the tab (e.g., "Book an appointment")
+     * Title for the tab (e.g., "Book an appointment", "General Inquiry")
      */
     tabTitle: string;
     /**
      * Optional subtitle for the tab
      */
     tabSubtitle?: string | null;
-    /**
-     * Form fields for this tab
-     */
-    formFields: {
-      /**
-       * Label for the form field
-       */
-      fieldLabel: string;
-      /**
-       * Type of form field
-       */
-      fieldType: 'text' | 'email' | 'tel' | 'textarea' | 'select';
-      /**
-       * Placeholder text for the field
-       */
-      placeholder?: string | null;
-      /**
-       * Whether this field is required
-       */
-      required?: boolean | null;
-      /**
-       * Options for select dropdown (only shown when field type is select)
-       */
-      options?:
-        | {
-            option: string;
-            id?: string | null;
-          }[]
-        | null;
-      id?: string | null;
-    }[];
-    /**
-     * Text for the submit button
-     */
-    submitButtonText?: string | null;
     id?: string | null;
   }[];
   id?: string | null;
@@ -2057,22 +2022,6 @@ export interface ContactBlockSelect<T extends boolean = true> {
     | {
         tabTitle?: T;
         tabSubtitle?: T;
-        formFields?:
-          | T
-          | {
-              fieldLabel?: T;
-              fieldType?: T;
-              placeholder?: T;
-              required?: T;
-              options?:
-                | T
-                | {
-                    option?: T;
-                    id?: T;
-                  };
-              id?: T;
-            };
-        submitButtonText?: T;
         id?: T;
       };
   id?: T;

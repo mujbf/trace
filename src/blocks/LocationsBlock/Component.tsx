@@ -209,9 +209,9 @@ export const LocationsBlockComponent: React.FC<LocationsBlockType> = ({
 
       <div className="relative z-20 pb-16 px-4 md:px-8 lg:px-20">
         <div className="max-w-8xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start lg:items-center">
             {/* Left Side - Custom Map Image */}
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-1/2 flex">
               <div className="relative w-full max-w-2xl mx-auto">
                 {/* Map Image Container */}
                 <div className="relative w-full aspect-square">
